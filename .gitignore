@@ -1,0 +1,24 @@
+# 依赖（package-lock.json 需要入库，供 npm ci 复现依赖树）
+node_modules/
+
+# 内部编排产物（任务书/分析草稿，不属于交付内容）
+.workbuddy/
+
+# Wrangler 构建产物与本地状态
+.dryrun/
+.wrangler/
+dist/
+
+# 本地密钥（只能使用 wrangler secret put，绝不入库）
+.dev.vars
+.dev.vars.*
+
+# 日志与系统文件
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# 历史 Python 实现的运行期数据（若有人仍在本地跑 legacy）
+data/
+__pycache__/

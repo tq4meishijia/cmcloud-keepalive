@@ -1,0 +1,22 @@
+# Cloudflare Workers 部署配置：cmcloud-keepalive
+# 部署前必须替换 kv_namespaces.id 为真实的 namespace id（见 README 快速开始）。
+
+name = "cmcloud-keepalive"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+# 默认每 5 分钟跑一轮保活（等价于上游 `--interval 300`）。
+# 修改周期时同时调整本表达式，对照表见 README「Cron 与 interval 映射」。
+[triggers]
+crons = ["*/5 * * * *"]
+
+# 状态存储。id 为占位符（32 个 0），仅用于让 `wrangler deploy --dry-run` 通过；
+# 真实 id 由 `npx wrangler kv namespace create KEEPALIVE_KV` 生成。
+[[kv_namespaces]]
+binding = "KEEPALIVE_KV"
+id = "00000000000000000000000000000000"
+
+# 非敏感变量（敏感值走 `wrangler secret put`）
+[vars]
+AUTO_RELOGIN = "true"

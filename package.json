@@ -1,0 +1,27 @@
+{
+  "name": "cmcloud-keepalive",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "移动云电脑 (Ecloud CloudPC) 协议级保活 —— Cloudflare Workers 移植版",
+  "keywords": [
+    "cloudflare-workers",
+    "ecloud",
+    "cloudpc",
+    "keepalive"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run --outdir=.dryrun",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}
